@@ -24,7 +24,7 @@ public class WorkoutControllerTest extends CheckinApplicationTests {
     @Rollback
     void insertWorkout() {
         Workout newWorkout = new Workout();
-        ResponseEntity<Workout> response = restTemplate.postForEntity("http://localhost:" + port + "/workout", newWorkout, Workout.class);
+        ResponseEntity<Workout> response = restTemplate.postForEntity(BASE_URL + port + "/workout", newWorkout, Workout.class);
 
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
