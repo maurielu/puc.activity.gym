@@ -25,7 +25,7 @@ public class WorkoutController {
         return workoutService.insert(workout);
     }
 
-    @GetMapping(path = "/list", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/list")
     public List<Workout> getList() {
         return workoutService.findAll();
     }

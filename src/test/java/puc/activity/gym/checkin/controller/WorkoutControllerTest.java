@@ -28,4 +28,13 @@ public class WorkoutControllerTest extends CheckinApplicationTests {
 
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
+
+    @Test
+    @Rollback
+    void findList() {
+        insertWorkout();
+        ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + port + "/workout/list", String.class);
+
+        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+    }
 }
