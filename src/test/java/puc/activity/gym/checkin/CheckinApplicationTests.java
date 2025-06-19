@@ -18,5 +18,4 @@ public class CheckinApplicationTests {
     public void performPost(String request, Object object, Class<?> aClass) {
         restTemplate.postForEntity("http://localhost:" + port + request, object, aClass);
     }
-
 }
