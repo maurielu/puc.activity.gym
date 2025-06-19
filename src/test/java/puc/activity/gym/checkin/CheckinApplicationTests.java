@@ -1,23 +1,22 @@
 package puc.activity.gym.checkin;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import puc.activity.gym.checkin.model.Workout;
-import puc.activity.gym.checkin.repository.WorkoutRepository;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
 
-@SpringBootTest
-class CheckinApplicationTests {
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class CheckinApplicationTests {
+    private final String BASE_URL = "http://localhost:";
+
+    @LocalServerPort
+    private int port;
+
     @Autowired
-    WorkoutRepository workoutRepository;
+    private TestRestTemplate restTemplate;
 
-    @Test
-    void contextLoads() {
-        Workout workout = new Workout();
-        workout.setUserId(1L);
-        workoutRepository.save(workout);
-
-        System.out.println(workout);
+    public void performPost(String request, Object object, Class<?> aClass) {
+        restTemplate.postForEntity("http://localhost:" + port + request, object, aClass);
     }
 
 }
