@@ -7,7 +7,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CheckinApplicationTests {
-    private final String BASE_URL = "http://localhost:";
+    protected final String BASE_URL = "http://localhost:";
 
     @LocalServerPort
     private int port;

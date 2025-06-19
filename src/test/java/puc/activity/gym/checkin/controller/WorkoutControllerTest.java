@@ -12,7 +12,6 @@ import puc.activity.gym.checkin.CheckinApplicationTests;
 import puc.activity.gym.checkin.model.Workout;
 
 public class WorkoutControllerTest extends CheckinApplicationTests {
-    private final String BASE_URL = "http://localhost:";
 
     @LocalServerPort
     private int port;
@@ -24,6 +23,7 @@ public class WorkoutControllerTest extends CheckinApplicationTests {
     @Rollback
     void insertWorkout() {
         Workout newWorkout = new Workout();
+        newWorkout.setUserId(1L);
         ResponseEntity<Workout> response = restTemplate.postForEntity(BASE_URL + port + "/workout", newWorkout, Workout.class);
 
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
