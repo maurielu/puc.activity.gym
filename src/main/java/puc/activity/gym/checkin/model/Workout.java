@@ -13,11 +13,12 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.type.SqlTypes;
+import puc.activity.gym.checkin.pojo.WorkoutMetaData;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Data
+@Entity
 public class Workout extends BaseModel {
 
     @Id

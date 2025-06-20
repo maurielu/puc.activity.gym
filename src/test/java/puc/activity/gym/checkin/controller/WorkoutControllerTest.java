@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Rollback;
 import puc.activity.gym.checkin.CheckinApplicationTests;
-import puc.activity.gym.checkin.model.Workout;
+import puc.activity.gym.checkin.dto.WorkoutDTO;
 
 public class WorkoutControllerTest extends CheckinApplicationTests {
 
@@ -22,19 +22,20 @@ public class WorkoutControllerTest extends CheckinApplicationTests {
     @Test
     @Rollback
     void insertWorkout() {
-        Workout newWorkout = new Workout();
-        newWorkout.setUserId(1L);
-        ResponseEntity<Workout> response = restTemplate.postForEntity(BASE_URL + port + "/workout", newWorkout, Workout.class);
-
-        Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+        WorkoutDTO newWorkoutDTO = new WorkoutDTO();
+        newWorkoutDTO.setUserId(1L);
+        ResponseEntity<WorkoutDTO> response = restTemplate.postForEntity(BASE_URL + port + "/workout", newWorkoutDTO, WorkoutDTO.class);
+        System.out.println(response);
+        Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
     @Test
     @Rollback
     void findList() {
         insertWorkout();
-        ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + port + "/workout/list", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + "/workout/list", String.class);
 
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+        System.out.println(response);
     }
 }

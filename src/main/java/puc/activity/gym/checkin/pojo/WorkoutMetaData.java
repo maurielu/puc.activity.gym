@@ -1,4 +1,4 @@
-package puc.activity.gym.checkin.model;
+package puc.activity.gym.checkin.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
