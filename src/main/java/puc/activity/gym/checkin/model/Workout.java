@@ -13,7 +13,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.Type;
 import org.hibernate.type.SqlTypes;
-import puc.activity.gym.checkin.pojo.WorkoutMetaData;
+import puc.activity.gym.checkin.model.decorator.SimpleWorkoutMetadata;
+import puc.activity.gym.checkin.model.decorator.WorkoutMetadata;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,5 +32,5 @@ public class Workout extends BaseModel {
     @Type(JsonBinaryType.class)
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb")
-    private WorkoutMetaData workoutMetaData = new WorkoutMetaData();
+    private WorkoutMetadata workoutMetaData = new SimpleWorkoutMetadata();
 }

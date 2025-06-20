@@ -3,7 +3,9 @@ package puc.activity.gym.checkin.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import puc.activity.gym.checkin.pojo.WorkoutMetaData;
+import puc.activity.gym.checkin.model.decorator.SimpleWorkoutMetadata;
+import puc.activity.gym.checkin.model.decorator.WorkoutMetadata;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,5 +16,5 @@ public class WorkoutDTO {
     private Long userId;
     private String userName;
 
-    private WorkoutMetaData workoutMetaData = new WorkoutMetaData();
+    private WorkoutMetadata workoutMetaData = new SimpleWorkoutMetadata();
 }
