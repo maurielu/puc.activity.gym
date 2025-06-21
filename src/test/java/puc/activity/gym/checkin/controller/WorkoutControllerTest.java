@@ -11,8 +11,7 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 import puc.activity.gym.checkin.CheckinApplicationTests;
 import puc.activity.gym.checkin.dto.WorkoutDTO;
-import puc.activity.gym.checkin.model.decorator.RunningWorkoutMetadata;
-import puc.activity.gym.checkin.model.decorator.SimpleWorkoutMetadata;
+import puc.activity.gym.checkin.model.RunningMetadata;
 
 import java.math.BigDecimal;
 
@@ -29,18 +28,14 @@ public class WorkoutControllerTest extends CheckinApplicationTests {
     void insertWorkout() {
         WorkoutDTO newWorkoutDTO = new WorkoutDTO();
         newWorkoutDTO.setUserId(1L);
-        SimpleWorkoutMetadata metadata = new SimpleWorkoutMetadata();
-        newWorkoutDTO.setWorkoutMetaData(metadata);
+
+        RunningMetadata runningMetadata = new RunningMetadata();
+        runningMetadata.setDistance(BigDecimal.TEN);
+        newWorkoutDTO.setRunningMetadata(runningMetadata);
+
         ResponseEntity<WorkoutDTO> response = restTemplate.postForEntity(BASE_URL + port + "/workout", newWorkoutDTO, WorkoutDTO.class);
         System.out.println(response);
 
-        newWorkoutDTO = new WorkoutDTO();
-        newWorkoutDTO.setUserId(1L);
-        RunningWorkoutMetadata metadata1 = new RunningWorkoutMetadata();
-        metadata1.setDistance(BigDecimal.TEN);
-        newWorkoutDTO.setWorkoutMetaData(metadata1);
-        response = restTemplate.postForEntity(BASE_URL + port + "/workout", newWorkoutDTO, WorkoutDTO.class);
-        System.out.println(response);
 
         Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
@@ -49,7 +44,7 @@ public class WorkoutControllerTest extends CheckinApplicationTests {
     @Rollback
     void findList() {
         insertWorkout();
-        ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + "/workout/list", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(BASE_URL + port + "/workout/list", String.class);
 
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
         System.out.println(response);

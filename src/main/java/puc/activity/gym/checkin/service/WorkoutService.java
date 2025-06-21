@@ -22,8 +22,10 @@ public class WorkoutService {
 
     @Transactional
     public WorkoutDTO insert(@Validated WorkoutDTO workoutDTO) {
-        Workout workout = workoutMapper.toEntity(workoutDTO);
+        Workout workout = workoutMapper.toWorkoutEntity(workoutDTO);
         workoutRepository.save(workout);
+
+
         return workoutMapper.toDto(workout);
     }
 
