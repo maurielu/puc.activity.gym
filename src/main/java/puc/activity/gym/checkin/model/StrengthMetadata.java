@@ -26,7 +26,7 @@ public class StrengthMetadata {
     @OneToOne()
     @JoinColumn(name = "workoutId")
     @MapsId
-    @JsonManagedReference
+    @JsonManagedReference("strengthMetadata")
     @ToString.Exclude
     private Workout workout;
 }

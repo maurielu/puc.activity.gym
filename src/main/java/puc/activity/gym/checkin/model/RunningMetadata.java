@@ -36,7 +36,7 @@ public class RunningMetadata extends BaseModel {
     @OneToOne()
     @JoinColumn(name = "workoutId")
     @MapsId
-    @JsonManagedReference
+    @JsonManagedReference("runningMetadata")
     @ToString.Exclude
     private Workout workout;
 

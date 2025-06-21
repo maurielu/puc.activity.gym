@@ -29,11 +29,11 @@ public class Workout extends BaseModel {
     private Duration duration;
 
     @OneToOne(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonBackReference
+    @JsonBackReference("runningMetadata")
     private RunningMetadata runningMetadata;
 
     @OneToOne(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonBackReference
+    @JsonBackReference("strengthMetadata")
     private StrengthMetadata strengthMetadata;
 
 }
