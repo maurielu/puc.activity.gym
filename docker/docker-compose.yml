@@ -1,0 +1,22 @@
+services:
+  postgres-checkin:
+    image: postgres:17.4
+    container_name: postgres-checkin
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: Senh4F0rTe
+      POSTGRES_DB: checkin_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/checkin_db/data
+    restart: unless-stopped
+    networks:
+      - checkin_rede
+
+volumes:
+  pgdata: {}
+
+networks:
+  checkin_rede:
+    driver: bridge
