@@ -1,5 +1,6 @@
 package puc.activity.gym.checkin.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,9 +29,11 @@ public class Workout extends BaseModel {
     private Duration duration;
 
     @OneToOne(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private RunningMetadata runningMetadata;
 
     @OneToOne(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private StrengthMetadata strengthMetadata;
 
 }

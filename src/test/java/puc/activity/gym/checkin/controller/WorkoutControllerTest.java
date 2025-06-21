@@ -36,7 +36,6 @@ public class WorkoutControllerTest extends CheckinApplicationTests {
         ResponseEntity<WorkoutDTO> response = restTemplate.postForEntity(BASE_URL + port + "/workout", newWorkoutDTO, WorkoutDTO.class);
         System.out.println(response);
 
-
         Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
