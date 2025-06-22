@@ -1,49 +1,39 @@
 package puc.activity.gym.checkin.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.math.BigDecimal;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-public class RunningMetadata extends BaseModel {
+public class StrengthSeries extends BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long runningId;
+    private Long strengthSeriesId;
 
-    private Long steps;
+    @NotBlank
+    String exerciseName;
 
+    @PositiveOrZero
     @NotNull
-    private BigDecimal distance;
+    int reps;
 
-    @NotNull
-    private DistanceUnit distanceUnit = DistanceUnit.KM;
-
-    @OneToOne()
-    @JoinColumn(name = "workoutId")
-    @MapsId
-    @JsonManagedReference("runningMetadata")
+    @ManyToOne
+    @JoinColumn(name = "strengthId")
     @ToString.Exclude
     @JsonIgnore
-    private Workout workout;
-
-    public enum DistanceUnit {
-        KM
-    }
+    private StrengthMetadata strengthMetadata;
 }
-

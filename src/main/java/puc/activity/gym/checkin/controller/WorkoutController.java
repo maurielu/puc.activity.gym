@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import puc.activity.gym.checkin.dto.WorkoutDTO;
-import puc.activity.gym.checkin.model.Workout;
 import puc.activity.gym.checkin.service.WorkoutService;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class WorkoutController {
     }
 
     @GetMapping(path = "/list")
-    public List<Workout> getList() {
+    public List<WorkoutDTO> getList() {
         return workoutService.findAll();
     }
 }
