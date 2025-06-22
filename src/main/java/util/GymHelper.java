@@ -9,4 +9,10 @@ public class GymHelper {
         String userId = jwt.getClaim("sub");
         return userId;
     }
+
+    public static String getOidcUsername() {
+        Jwt jwt = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = jwt.getClaim("preferred_username");
+        return username;
+    }
 }

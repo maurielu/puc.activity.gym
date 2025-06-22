@@ -33,7 +33,7 @@ public class WorkoutService {
         Workout workout = workoutMapper.toWorkoutEntity(workoutDTO);
 
         workout.setUserId(GymHelper.getOidcUserId());
-
+        workout.setUsername(GymHelper.getOidcUsername());
         setBidirectionalRelations(workout);
 
         workoutRepository.save(workout);

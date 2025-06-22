@@ -27,6 +27,9 @@ public class Workout extends BaseModel {
     private String userId;
 
     @NotNull
+    private String username;
+
+    @NotNull
     private Duration duration;
 
     @OneToOne(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
