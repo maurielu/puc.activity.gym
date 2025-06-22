@@ -9,6 +9,7 @@ import puc.activity.gym.checkin.model.RunningMetadata;
 import puc.activity.gym.checkin.model.Workout;
 import puc.activity.gym.checkin.repository.RunningMetadataRepository;
 import puc.activity.gym.checkin.repository.WorkoutRepository;
+import util.GymHelper;
 
 import java.util.List;
 
@@ -27,6 +28,9 @@ public class WorkoutService {
     @Transactional
     public WorkoutDTO insert(@Validated WorkoutDTO workoutDTO) {
         Workout workout = workoutMapper.toWorkoutEntity(workoutDTO);
+
+        workout.setUserId(GymHelper.getOidcUserId());
+
         RunningMetadata runningMetadata = workout.getRunningMetadata();
         if (runningMetadata != null) {
             runningMetadata.setWorkout(workout);

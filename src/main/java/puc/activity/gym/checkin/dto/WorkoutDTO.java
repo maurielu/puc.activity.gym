@@ -14,7 +14,7 @@ import java.time.Duration;
 @Data
 public class WorkoutDTO {
     private Long workoutId;
-    private Long userId;
+    private String userId;
     private Duration duration;
 
     private RunningMetadata runningMetadata;

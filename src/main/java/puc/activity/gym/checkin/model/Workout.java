@@ -24,7 +24,7 @@ public class Workout extends BaseModel {
     private Long workoutId;
 
     @NotNull
-    private Long userId;
+    private String userId;
 
     private Duration duration;
 
